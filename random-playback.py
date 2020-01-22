@@ -13,9 +13,8 @@ infile.close()
 
 
 time.sleep(5)
-stopper = True
 
-for _ in range(5):
+while True:
     random_index = str(random.randrange(0,len(recording_library.keys())))
     print(random_index)
     random_recording = recording_library[random_index]

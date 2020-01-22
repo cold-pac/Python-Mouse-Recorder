@@ -22,7 +22,7 @@ for _ in range(5):
     for y in random_recording:
         if isinstance(y, tuple):
             mouse.position = y
-            time.sleep(0.01)
+            time.sleep(0.001)
         else:
             if y[1]:
                 mouse.press(y[0])

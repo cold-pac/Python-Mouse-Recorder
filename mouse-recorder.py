@@ -10,23 +10,27 @@ time.sleep(1)
 
 mouse_movements = []
 
+
 def gFunc():
     while mouse.position[0] < 1120 or mouse.position[1] < 725:
         mouse_movements.append(mouse.position)
-        time.sleep(0.01)
+        time.sleep(0.001)
 
-get_mouse_pos = threading.Thread(target = gFunc) #the thread's target is executed when the thread starts
-get_mouse_pos.daemon = True #will exit once all processes are finished, Listener thread is also a daemon
+
+get_mouse_pos = threading.Thread(target=gFunc)  # the thread's target is executed when the thread starts
+get_mouse_pos.daemon = True  # will exit once all processes are finished, Listener thread is also a daemon
 get_mouse_pos.start()
 
 
 def on_move(x, y):
     if mouse.position[0] >= 1120 and mouse.position[1] >= 725:
         # Stop listener
-        return False #OK so returning False stops a listener
+        return False  # OK so returning False stops a listener
+
 
 def on_click(x, y, button, pressed):
     mouse_movements.append([button, pressed])
+
 
 # Collect events until released
 with Listener(
@@ -35,14 +39,12 @@ with Listener(
         on_scroll=None) as listener:
     listener.join()
 
-time.sleep(1) #sleep for 1 second(s)
-
+time.sleep(1)  # sleep for 1 second(s)
 
 filename = 'most_recent_mouse_recording'
 outfile = open(filename, 'wb')
 pickle.dump(mouse_movements, outfile)
 outfile.close()
-
 
 filename2 = 'recording_storage'
 
@@ -66,4 +68,3 @@ else:
     outfile2 = open(filename2, 'wb')
     pickle.dump(recording_library, outfile2)
     outfile2.close()
-

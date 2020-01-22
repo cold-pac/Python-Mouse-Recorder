@@ -1,0 +1,1 @@
+A mouse movement recorder written in python. Currently it can be executed from the command line. Uses threading and pickling. 

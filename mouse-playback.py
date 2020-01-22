@@ -4,7 +4,9 @@ import pickle
 
 mouse = Controller()
 
-infile = open('mouse_recording_output_file', 'rb')
+print("playing back most recent mouse recording")
+
+infile = open('most_recent_mouse_recording', 'rb')
 mouse_movements_copy = pickle.load(infile)
 infile.close()
 

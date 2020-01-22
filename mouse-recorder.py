@@ -1,7 +1,6 @@
 from pynput.mouse import *
 import time
 import pickle
-import math 
 import threading
 
 mouse = Controller()
@@ -11,7 +10,7 @@ time.sleep(1)
 mouse_movements = []
 
 def gFunc():
-    while mouse.position[1] < 725:
+    while mouse.position[0] < 1120 or mouse.position[1] < 725:
         mouse_movements.append(mouse.position)
         time.sleep(0.01)
 
@@ -21,7 +20,7 @@ get_mouse_pos.start()
 
 
 def on_move(x, y):
-    if mouse.position[1] >= 725:
+    if mouse.position[0] >= 1120 and mouse.position[1] >= 725:
         # Stop listener
         return False #OK so returning False stops a listener
 
@@ -37,8 +36,9 @@ with Listener(
 
 time.sleep(1) #sleep for 1 second(s)
 
-filename = 'mouse_recording_output_file'
+filename = 'most_recent_mouse_recording'
 outfile = open(filename, 'wb')
 pickle.dump(mouse_movements, outfile)
 outfile.close()
+
 

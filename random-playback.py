@@ -5,14 +5,14 @@ import pickle
 
 mouse = Controller()
 
-print("plays back a randomly selected recording from the recording library, 5 times")
+print("plays back a randomly selected recording from the recording library, infinite times")
 
 infile = open('recording_storage', 'rb')
 recording_library = pickle.load(infile)
 infile.close()
 
 
-time.sleep(5)
+time.sleep(1)
 
 while True:
     random_index = str(random.randrange(0,len(recording_library.keys())))
